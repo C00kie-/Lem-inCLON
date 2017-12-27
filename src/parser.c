@@ -18,7 +18,7 @@ static int	check_tubes(t_map *map, char *line)
 	int		i;
 	t_room	*ptr;
 	char	**tube_data;
-	char	status;
+	int	status;
 
 	i = 0;
 	status = 0;
@@ -39,6 +39,8 @@ static int	check_tubes(t_map *map, char *line)
 	}
 	if (status == 2)
 		connect_rooms(map);
+	free(tube_data[0]);
+	free(tube_data[1]);
 	return (status);
 }
 
@@ -49,21 +51,24 @@ static int	linetodata(t_map *map, char *line, int p_status)
 	int		i;
 	char	status;
 
+
 	i = 0;
 	status = ROOM;
 	if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
 		ft_error(1);
 	if (ft_strchr(line, '-'))
 		status = TUBE;
+
 	if ((data = ft_strsplit(line, ' ')) == NULL)
 		ft_error(2);
 	while (data[i] != NULL)
 		i++;
 	if ((status == ROOM) && i == 3)
 		init_room(map, room, data, p_status);
-	if (status == TUBE && i == 1 && ft_strchr(line, '-'))
+/*	if (status == TUBE && i == 1 && ft_strchr(line, '-'))
 		if ((check_tubes(map, line)) != 2)
 			return (-1);
+
 	return (1);
 }
 
@@ -75,6 +80,7 @@ int			parser(t_map *map)
 
 	status = NO_ANT;
 	line = NULL;
+	test = 0;
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (*line && ft_strisdigit(line) && !status && (status = ANT))

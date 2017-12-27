@@ -6,7 +6,7 @@
 /*   By: pbourmea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 20:13:57 by pbourmea          #+#    #+#             */
-/*   Updated: 2017/12/22 20:13:59 by pbourmea         ###   ########.fr       */
+/*   Updated: 2017/12/27 17:17:42 by pbourmea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int			main(void)
 
 	map = ft_memalloc(sizeof(t_map));
 	parser(map);
+	while(1);
+
 	map->antleft = map->ant;
 	if (find_shortest(map))
 		out_pout(map);
