@@ -78,12 +78,12 @@ int			main(void)
 
 	map = ft_memalloc(sizeof(t_map));
 	parser(map);
-	while(1);
-
 	map->antleft = map->ant;
 	if (find_shortest(map))
 		out_pout(map);
 	else
 		ft_error(2);
+
+	while (1);
 	return (0);
 }

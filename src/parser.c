@@ -41,21 +41,22 @@ static int	check_tubes(t_map *map, char *line)
 		connect_rooms(map);
 	free(tube_data[0]);
 	free(tube_data[1]);
+	free(tube_data);
 	return (status);
 }
 
 static int	linetodata(t_map *map, char *line, int p_status)
 {
-	char	**data;
-	t_room	*room;
+	 char	**data;
+	// t_room	*room;
 	int		i;
 	char	status;
 
-
 	i = 0;
 	status = ROOM;
-	if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
-		ft_error(1);
+
+	// if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
+	// 	ft_error(1);
 	if (ft_strchr(line, '-'))
 		status = TUBE;
 
@@ -64,11 +65,13 @@ static int	linetodata(t_map *map, char *line, int p_status)
 	while (data[i] != NULL)
 		i++;
 	if ((status == ROOM) && i == 3)
-		init_room(map, room, data, p_status);
-/*	if (status == TUBE && i == 1 && ft_strchr(line, '-'))
+		init_room(map, line, p_status);
+	if (status == TUBE && i == 1 && ft_strchr(line, '-'))
 		if ((check_tubes(map, line)) != 2)
 			return (-1);
-
+	free(data[0]);
+	free(data[1]);
+	free(data);
 	return (1);
 }
 
@@ -83,6 +86,7 @@ int			parser(t_map *map)
 	test = 0;
 	while ((get_next_line(0, &line)) > 0)
 	{
+
 		if (*line && ft_strisdigit(line) && !status && (status = ANT))
 			map->ant = ft_atoi(line);
 		if (line[0] == '#' && line[1] == '#')
@@ -96,6 +100,6 @@ int			parser(t_map *map)
 		ft_putendl(line);
 		free(line);
 	}
-	//room_print(map->rooms);
+	//room_print(map->rooms);*/
 	return (1);
 }

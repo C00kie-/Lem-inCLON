@@ -65,8 +65,14 @@ void	room_print(t_room *room)
 	}
 }*/
 
-void		init_room(t_map *map, t_room *room, char **data, int p_status)
+void		init_room(t_map *map, char *line, int p_status)
 {
+	t_room *room;
+	char **data;
+
+	data = ft_strsplit(line, ' ');
+	if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
+		ft_error(1);
 	room->name = ft_strdup(data[0]);
 	room->x = ft_atoi(data[1]);
 	room->y = ft_atoi(data[2]);
@@ -78,4 +84,9 @@ void		init_room(t_map *map, t_room *room, char **data, int p_status)
 	else if (p_status == END)
 		map->end = room;
 	push_room(map, room);
+	free(data[0]);
+	free(data[1]);
+	free(data[2]);
+	free(data);
+
 }
