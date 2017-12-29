@@ -42,6 +42,7 @@ static int	check_tubes(t_map *map, char *line)
 	free(tube_data[0]);
 	free(tube_data[1]);
 	free(tube_data);
+
 	return (status);
 }
 
@@ -69,9 +70,12 @@ static int	linetodata(t_map *map, char *line, int p_status)
 	if (status == TUBE && i == 1 && ft_strchr(line, '-'))
 		if ((check_tubes(map, line)) != 2)
 			return (-1);
-	free(data[0]);
-	free(data[1]);
-	free(data);
+	while (i--)
+		free(data[i]);
+	// free(data[1]);
+	// if ( i == 3)
+	// 	free(data[2]);
+	// free(data);
 	return (1);
 }
 
