@@ -70,6 +70,9 @@ void		init_room(t_map *map, char *line, int p_status)
 	t_room *room;
 	char **data;
 
+	int i;
+
+	i = 0;
 	data = ft_strsplit(line, ' ');
 	if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
 		ft_error(1);
@@ -84,9 +87,12 @@ void		init_room(t_map *map, char *line, int p_status)
 	else if (p_status == END)
 		map->end = room;
 	push_room(map, room);
-	free(data[0]);
-	free(data[1]);
-	free(data[2]);
+	// free(data[0]);
+	// free(data[1]);
+	// free(data[2]);
+	i = 0;
+	while (i)
+		free(data[i++]);
 	free(data);
 
 }

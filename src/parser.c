@@ -75,7 +75,7 @@ static int	linetodata(t_map *map, char *line, int p_status)
 	// free(data[1]);
 	// if ( i == 3)
 	// 	free(data[2]);
-	// free(data);
+	free(data);
 	return (1);
 }
 
