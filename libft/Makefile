@@ -6,7 +6,7 @@
 #    By: pbourmea <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/03 17:19:57 by pbourmea          #+#    #+#              #
-#    Updated: 2015/03/22 15:37:39 by pbourmea         ###   ########.fr        #
+#    Updated: 2017/12/30 20:21:06 by pbourmea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ SRC_F += ft_putnbr.c
 SRC_F += ft_putnbr_fd.c
 SRC_F += ft_putstr.c
 SRC_F += ft_putstr_fd.c
-SRC_F += ft_strisdigit.c
 SRC_F += ft_strcat.c
 SRC_F += ft_strchr.c
 SRC_F += ft_strclr.c
@@ -88,6 +87,7 @@ SRC_F += ft_lstadd.c
 SRC_F += get_next_line.c
 SRC_F += ft_strndup.c
 SRC_F += ft_size_bin.c
+SRC_F += ft_strisdigit.c
 
 INC_F += libft.h
 INC_F += get_next_line.h

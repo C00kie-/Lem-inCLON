@@ -6,14 +6,14 @@ ifeq ($(MODE), dev)
 CFLAGS =
 endif
 LDFLAGS += -I $(DIR_INC)
-LDFLAGS += -I $(DIR_LIBFT)/include
+LDFLAGS += -I $(DIR_LIBFT)/inc
 CLIBS 	+= -L $(DIR_LIBFT) -lft
 
 #Directories
 DIR_SRC = src
 DIR_INC = include
 DIR_OBJ = obj
-DIR_LIBFT = lib
+DIR_LIBFT = libft
 
 #Files
 

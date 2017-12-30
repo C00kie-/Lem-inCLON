@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-double	ft_pow(double x, unsigned int y)
+static double	ft_pow(double x, unsigned int y)
 {
 	double	i;
 	double	val;
@@ -29,7 +29,7 @@ double	ft_pow(double x, unsigned int y)
 	return (val);
 }
 
-size_t	ft_size_bin(unsigned int value)
+size_t			ft_size_bin(unsigned int value)
 {
 	size_t	i;
 	size_t	total;
