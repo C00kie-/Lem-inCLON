@@ -84,7 +84,7 @@ int			main(void)
 		out_pout(map);
 	else
 		ft_error(2);
-	while (1);
+	
 
 	return (0);
 }
