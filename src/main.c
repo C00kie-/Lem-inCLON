@@ -84,7 +84,23 @@ int			main(void)
 		out_pout(map);
 	else
 		ft_error(2);
-	
 
+	t_room *tmp;
+	t_tube *tmp_tube;
+	while (map->rooms)
+	{
+		tmp = map->rooms;
+		if (tmp->name)
+			free(tmp->name);
+		while (tmp->a_tube)
+		{
+			tmp_tube = tmp->a_tube;
+			tmp->a_tube = tmp->a_tube->next;
+			free(tmp->a_tube);
+		}
+		map->rooms = map->rooms->next;
+		free(tmp);
+	}
+	free(map);
 	return (0);
 }

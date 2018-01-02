@@ -80,6 +80,7 @@ void		init_room(t_map *map, char *line, int p_status)
 	room->x = ft_atoi(data[1]);
 	room->y = ft_atoi(data[2]);
 	room->next = NULL;
+	room->prev = NULL;
 	room->tubes = ft_memalloc(sizeof(t_tube));
 	room->a_tube = room->tubes;
 	if (p_status == START)
@@ -91,7 +92,7 @@ void		init_room(t_map *map, char *line, int p_status)
 	// free(data[1]);
 	// free(data[2]);
 	i = 0;
-	while (i)
+	while (data[i])
 		free(data[i++]);
 	free(data);
 

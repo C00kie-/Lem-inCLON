@@ -15,7 +15,7 @@
 static int		fill_weight(const t_map *map, t_room *room)
 {
 	room->tubes = room->a_tube;
-	while (room->tubes->room)
+	while (room->tubes && room->tubes->room)
 	{
 		if (room->tubes->room == map->end)
 		{
@@ -54,7 +54,7 @@ int				find_shortest(t_map *map)
 	unsigned long		depth;
 
 	depth = 0;
-	map->path = ft_memalloc(sizeof(t_room *));
+	map->path = NULL;
 	while (++depth <= map->nb_rooms - 1)
 		if ((map->path = try_path(map, depth)))
 			return (TRUE);

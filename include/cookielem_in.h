@@ -52,7 +52,6 @@ typedef struct	s_map
 	t_room			*rooms;
 	t_room			*start;
 	t_room			*end;
-	t_tube			*tubes;
 	t_room			*tmp[2];
 	t_room			*path;
 }				t_map;

@@ -1,0 +1,6 @@
+.DS_Store
+*.dSYM
+*.txt
+*.o
+libft/libft.a
+lem-in

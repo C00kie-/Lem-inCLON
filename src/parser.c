@@ -90,7 +90,6 @@ int			parser(t_map *map)
 	test = 0;
 	while ((get_next_line(0, &line)) > 0)
 	{
-
 		if (*line && ft_strisdigit(line) && !status && (status = ANT))
 			map->ant = ft_atoi(line);
 		if (line[0] == '#' && line[1] == '#')
@@ -100,9 +99,12 @@ int			parser(t_map *map)
 			status = ((test) ? ANT + test : status);
 		}
 		else if ((linetodata(map, line, status)) == -1 || !(status = ANT))
+		{
+			ft_strdel(&line);
 			break ;
+		}
 		ft_putendl(line);
-		free(line);
+		ft_strdel(&line);
 	}
 	//room_print(map->rooms);*/
 	return (1);
