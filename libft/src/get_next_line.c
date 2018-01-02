@@ -18,7 +18,7 @@ static char		*join_buffer(char *buf, char *str)
 
 	new_str = NULL;
 	new_str = ft_strjoin(buf, str);
-	ft_bzero(str, BUF_SIZE);
+	ft_bzero(str, BUF_SIZE + 1);
 	ft_strdel(&buf);
 	return (new_str);
 }
@@ -44,8 +44,11 @@ int				get_next_line(int fd, char **line)
 	int				len;
 	static char		*ret = NULL;
 
+	buf = NULL;
 	buf = ret;
 	*line = NULL;
+	len = 0;
+	ft_bzero(str, BUF_SIZE + 1);
 	while ((len = read(fd, str, BUF_SIZE)) >= 0)
 	{
 		str[len] = '\0';
@@ -55,7 +58,7 @@ int				get_next_line(int fd, char **line)
 			return (0);
 		}
 		if (len != 0)
-			buf = join_buffer(buf, str);
+			buf = join_buffer(buf, &(*str));
 		i = 0;
 		while ((buf[i] != '\n') && (buf[i] != '\0'))
 			i++;

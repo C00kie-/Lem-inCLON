@@ -72,6 +72,7 @@ void		ft_error(unsigned long motif)
 	exit(-1);
 }
 
+#include <stdio.h>
 int			main(void)
 {
 	t_map *map;
@@ -86,7 +87,6 @@ int			main(void)
 		ft_error(2);
 
 	t_room *tmp;
-	t_tube *tmp_tube;
 	while (map->rooms)
 	{
 		tmp = map->rooms;
@@ -94,9 +94,9 @@ int			main(void)
 			free(tmp->name);
 		while (tmp->a_tube)
 		{
-			tmp_tube = tmp->a_tube;
+			tmp->tubes = tmp->a_tube;
 			tmp->a_tube = tmp->a_tube->next;
-			free(tmp->a_tube);
+			free(tmp->tubes);
 		}
 		map->rooms = map->rooms->next;
 		free(tmp);
