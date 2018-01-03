@@ -13,7 +13,27 @@
 #include "cookielem_in.h"
 #include <stdio.h>
 
-static void	output_ant(int name_ant, char *name_room)
+static	void	free_lists(t_map *map)
+{
+	t_room	*tmp;
+
+	while (map->rooms)
+	{
+		tmp = map->rooms;
+		if (tmp->name)
+			free(tmp->name);
+		while (tmp->a_tube)
+		{
+			tmp->tubes = tmp->a_tube;
+			tmp->a_tube = tmp->a_tube->next;
+			free(tmp->tubes);
+		}
+		map->rooms = map->rooms->next;
+		free(tmp);
+	}
+}
+
+static void		output_ant(int name_ant, char *name_room)
 {
 	write(1, "L", 1);
 	ft_putnbr(name_ant);
@@ -22,7 +42,7 @@ static void	output_ant(int name_ant, char *name_room)
 	write(1, " ", 1);
 }
 
-static void	put_ants(t_map *map)
+static void		put_ants(t_map *map)
 {
 	t_room	*cur;
 
@@ -45,7 +65,7 @@ static void	put_ants(t_map *map)
 	}
 }
 
-void		out_pout(t_map *map)
+static void		out_pout(t_map *map)
 {
 	unsigned long	lem_out;
 
@@ -60,21 +80,9 @@ void		out_pout(t_map *map)
 	}
 }
 
-void		ft_error(unsigned long motif)
-{
-	if (motif == 1)
-		ft_putendl(ERR_ALLOC);
-	else if (motif == 2)
-		ft_putendl("ERROR\n");
-	else if (motif == 3)
-		ft_putendl("error format input\n");
-	exit(-1);
-}
-
-int			main(void)
+int				main(void)
 {
 	t_map	*map;
-	t_room	*tmp;
 
 	map = ft_memalloc(sizeof(t_map));
 	parser(map);
@@ -83,20 +91,8 @@ int			main(void)
 		out_pout(map);
 	else
 		ft_error(2);
-	while (map->rooms)
-	{
-		tmp = map->rooms;
-		if (tmp->name)
-			free(tmp->name);
-		while (tmp->a_tube)
-		{
-			tmp->tubes = tmp->a_tube;
-			tmp->a_tube = tmp->a_tube->next;
-			free(tmp->tubes);
-		}
-		map->rooms = map->rooms->next;
-		free(tmp);
-	}
+	if (map->rooms)
+		free_lists(map);
 	free(map);
 	return (0);
 }

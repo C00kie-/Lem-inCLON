@@ -24,7 +24,7 @@ static int	check_tubes(t_map *map, char *line)
 	status = 0;
 	ptr = map->rooms;
 	tube_data = ft_strsplit(line, '-');
-	while (tube_data[i] != NULL)
+	while (tube_data[i] != NULL) //check split
 		i++;
 	if (i != 2)
 		ft_error(3);
@@ -82,7 +82,7 @@ int			parser(t_map *map)
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (*line && ft_strisdigit(line) && !status && (status = ANT))
-			map->ant = ft_atoi(line);
+			map->ant = ft_atoi(line);//function
 		if (line[0] == '#' && line[1] == '#')
 		{
 			test = !(ft_strcmp(line + 2, "start")) +

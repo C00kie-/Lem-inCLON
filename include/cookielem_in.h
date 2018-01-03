@@ -62,5 +62,6 @@ void			connect_rooms(t_map *map);
 void			room_print(t_room *room);
 void			init_room(t_map *map, char *line, int p_status);
 int				find_shortest(t_map *map);
+void			ft_error(unsigned long motif);
 
 #endif

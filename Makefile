@@ -29,6 +29,7 @@ SRC_F	+= main.c
 SRC_F	+= parser.c
 SRC_F 	+= room.c
 SRC_F	+= resolve.c
+SRC_F	+= error.c
 
 #SRC_F	+= xfunc.c
 
