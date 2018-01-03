@@ -46,31 +46,12 @@ static void	push_room(t_map *map, t_room *room)
 		tmp->next = room;
 	}
 }
-/*
-void	room_print(t_room *room)
-{
-	t_room *ptr;
-
-	ptr = room;
-	while (ptr)
-	{
-		ft_putendl(ptr->name);
-		ptr->tubes = ptr->a_tube;
-		while (ptr->tubes->room)
-		{
-			printf("%s - %s\n", ptr->name, ptr->tubes->room->name);
-			ptr->tubes = ptr->tubes->next;
-		}
-		ptr = ptr->next;
-	}
-}*/
 
 void		init_room(t_map *map, char *line, int p_status)
 {
-	t_room *room;
-	char **data;
-
-	int i;
+	t_room	*room;
+	char	**data;
+	int		i;
 
 	i = 0;
 	data = ft_strsplit(line, ' ');
@@ -88,12 +69,8 @@ void		init_room(t_map *map, char *line, int p_status)
 	else if (p_status == END)
 		map->end = room;
 	push_room(map, room);
-	// free(data[0]);
-	// free(data[1]);
-	// free(data[2]);
 	i = 0;
 	while (data[i])
 		free(data[i++]);
 	free(data);
-
 }

@@ -45,8 +45,8 @@ int				get_next_line(int fd, char **line)
 	static char		*ret = NULL;
 
 	buf = NULL;
-	buf = ret;
 	*line = NULL;
+	buf = ret;
 	len = 0;
 	ft_bzero(str, BUF_SIZE + 1);
 	while ((len = read(fd, str, BUF_SIZE)) >= 0)

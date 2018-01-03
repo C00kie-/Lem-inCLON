@@ -18,7 +18,7 @@ static int	check_tubes(t_map *map, char *line)
 	int		i;
 	t_room	*ptr;
 	char	**tube_data;
-	int	status;
+	int		status;
 
 	i = 0;
 	status = 0;
@@ -42,25 +42,19 @@ static int	check_tubes(t_map *map, char *line)
 	free(tube_data[0]);
 	free(tube_data[1]);
 	free(tube_data);
-
 	return (status);
 }
 
 static int	linetodata(t_map *map, char *line, int p_status)
 {
-	 char	**data;
-	// t_room	*room;
+	char	**data;
 	int		i;
 	char	status;
 
 	i = 0;
 	status = ROOM;
-
-	// if ((room = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
-	// 	ft_error(1);
 	if (ft_strchr(line, '-'))
 		status = TUBE;
-
 	if ((data = ft_strsplit(line, ' ')) == NULL)
 		ft_error(2);
 	while (data[i] != NULL)
@@ -72,9 +66,6 @@ static int	linetodata(t_map *map, char *line, int p_status)
 			return (-1);
 	while (i--)
 		free(data[i]);
-	// free(data[1]);
-	// if ( i == 3)
-	// 	free(data[2]);
 	free(data);
 	return (1);
 }
@@ -106,6 +97,5 @@ int			parser(t_map *map)
 		ft_putendl(line);
 		ft_strdel(&line);
 	}
-	//room_print(map->rooms);*/
 	return (1);
 }

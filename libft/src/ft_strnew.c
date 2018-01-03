@@ -14,17 +14,5 @@
 
 char	*ft_strnew(size_t size)
 {
-	// char	*dest;
-	// size_t	n;
-    //
-	// if ((dest = (char *)malloc(sizeof(char) * size + 1)) == NULL)
-	// 	return (NULL);
-	// n = 0;
-	// while (dest + n != NULL && n <= size)
-	// {
-	// 	dest[n] = '\0';
-	// 	n++;
-	// }
-	// return (dest);
 	return ((char*)ft_memalloc(sizeof(char) * (size + 1)));
 }

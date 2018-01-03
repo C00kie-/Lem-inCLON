@@ -57,7 +57,6 @@ void		out_pout(t_map *map)
 			lem_out++;
 		put_ants(map);
 		ft_putchar('\n');
-		//v = visu();
 	}
 }
 
@@ -72,21 +71,18 @@ void		ft_error(unsigned long motif)
 	exit(-1);
 }
 
-#include <stdio.h>
 int			main(void)
 {
-	t_map *map;
+	t_map	*map;
+	t_room	*tmp;
 
 	map = ft_memalloc(sizeof(t_map));
- 	// while (1);
 	parser(map);
 	map->antleft = map->ant;
 	if (find_shortest(map))
 		out_pout(map);
 	else
 		ft_error(2);
-
-	t_room *tmp;
 	while (map->rooms)
 	{
 		tmp = map->rooms;
