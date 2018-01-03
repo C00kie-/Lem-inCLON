@@ -12,6 +12,12 @@
 
 #include "get_next_line.h"
 
+static int		ft_stop(char *ret)
+{
+	ft_strdel(&ret);
+	return (0);
+}
+
 static char		*join_buffer(char *buf, char *str)
 {
 	char			*new_str;
@@ -53,10 +59,7 @@ int				get_next_line(int fd, char **line)
 	{
 		str[len] = '\0';
 		if ((len == 0 && (buf == NULL || buf[0] == '\0')))
-		{
-			ft_strdel(&ret);
-			return (0);
-		}
+			return (ft_stop(ret));
 		if (len != 0)
 			buf = join_buffer(buf, &(*str));
 		i = 0;

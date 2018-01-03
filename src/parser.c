@@ -13,7 +13,15 @@
 #include "cookielem_in.h"
 #include "get_next_line.h"
 
-static int	check_tubes(t_map *map, char *line)
+static	void	check_split(char **tube_data, int i)
+{
+	while (tube_data[i] != NULL)
+		i++;
+	if (i != 2)
+		ft_error(3);
+}
+
+static	int		check_tubes(t_map *map, char *line)
 {
 	int		i;
 	t_room	*ptr;
@@ -24,10 +32,7 @@ static int	check_tubes(t_map *map, char *line)
 	status = 0;
 	ptr = map->rooms;
 	tube_data = ft_strsplit(line, '-');
-	while (tube_data[i] != NULL) //check split
-		i++;
-	if (i != 2)
-		ft_error(3);
+	check_split(tube_data, i);
 	ft_memset(map->tmp, 0, sizeof(t_room*) * 2);
 	while (ptr && status != 2)
 	{
@@ -45,7 +50,7 @@ static int	check_tubes(t_map *map, char *line)
 	return (status);
 }
 
-static int	linetodata(t_map *map, char *line, int p_status)
+static	int		linetodata(t_map *map, char *line, int p_status)
 {
 	char	**data;
 	int		i;
@@ -70,7 +75,13 @@ static int	linetodata(t_map *map, char *line, int p_status)
 	return (1);
 }
 
-int			parser(t_map *map)
+static	void	p_del(char *line)
+{
+	ft_putendl(line);
+	ft_strdel(&line);
+}
+
+int				parser(t_map *map)
 {
 	char	*line;
 	int		status;
@@ -82,7 +93,7 @@ int			parser(t_map *map)
 	while ((get_next_line(0, &line)) > 0)
 	{
 		if (*line && ft_strisdigit(line) && !status && (status = ANT))
-			map->ant = ft_atoi(line);//function
+			map->ant = ft_atoi(line);
 		if (line[0] == '#' && line[1] == '#')
 		{
 			test = !(ft_strcmp(line + 2, "start")) +
@@ -94,8 +105,7 @@ int			parser(t_map *map)
 			ft_strdel(&line);
 			break ;
 		}
-		ft_putendl(line);
-		ft_strdel(&line);
+		p_del(line);
 	}
 	return (1);
 }
